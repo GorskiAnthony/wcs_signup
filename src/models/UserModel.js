@@ -1,7 +1,11 @@
 const connection = require("../services/connection");
 
-class AuthModel {
-  // Ici, je créer via la function create un nouvel utilisateur
+class UserModel {
+  /**
+   * @description Créer un nouvel utilisateur
+   * @param data
+   * @returns {Promise<*>}
+   */
   static async create(data) {
     const { email, password } = data;
     const result = await connection
@@ -24,6 +28,16 @@ class AuthModel {
       .query(`SELECT * FROM users WHERE email = ?`, [email]);
     return result;
   }
+
+  /**
+   * @description Ici, je récupère un utilisateur via son id
+   * @param id
+   * @returns {Promise<*>}
+   */
+  static async getAllUser() {
+    const result = await connection.promise().query(`SELECT * FROM users;`);
+    return result;
+  }
 }
 
-module.exports = AuthModel;
+module.exports = UserModel;

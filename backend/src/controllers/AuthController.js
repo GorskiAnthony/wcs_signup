@@ -80,6 +80,10 @@ class AuthController {
       });
     }
   }
+
+  static async articles(req, res) {
+    res.json({ ...req.user });
+  }
 }
 
 module.exports = AuthController;

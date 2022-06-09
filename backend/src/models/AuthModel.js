@@ -22,7 +22,7 @@ class AuthModel {
     const result = await connection
       .promise()
       .query(`SELECT * FROM users WHERE email = ?`, [email]);
-    return result;
+    return result[0];
   }
 }
 
